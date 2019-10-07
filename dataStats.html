@@ -152,13 +152,18 @@ report("#A10",answer)
     <li>Quiz: 20%</li>
     <li>Homework: 15%</li>
     </ul>
+    
 
 <div id="B1">
 <h3>Write a function that takes the classroom data and returns an array of objects.  Each object will have two attributes: a picture and the final grade in the class.</h3>
-    
+     
 <script>
-
-    report("#B1",answer);
+    
+ var gradeReport=function(penguin){
+    var report={ grade: d3.mean(penguin.test,getGrade)*.3 + d3.mean(penguin.homework,getGrade)* .15 +d3.mean(penguin.quizes,getGrade)*.2 +penguin.final[0].grade*.35, image: getPic(penguin)} 
+    return report }
+ classroom.map(gradeReport)
+ report("#B1",answer);
 </script>
     </div>
     
@@ -175,6 +180,9 @@ report("#A10",answer)
 <h3>Write a function to find the average grade of all students on the first quiz.</h3>
     <p>Here is what you should get.=6.217391304347826</p>
 <script>
+    var getFirstQuiz= function(penguin){
+        return penguin.quizes[0].grade;
+    }
 var answer="Please Complete";
 report("#C1",answer)    
 </script>

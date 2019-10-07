@@ -12,6 +12,7 @@
             }
         pre {
             color: blue;
+            margin-right:50%;
         }
           p {
             margin-right: 50%;
@@ -19,38 +20,22 @@
         </style>
     </head>
     <body>
+        <h2> B1</h2>
+        <p> we created a function called gradeReport that takes a given penguin and returns that penguin's grade.We then created an object for the function to return. We gave the object 2 attributes: grade and image. Within the grade attribute, we used the percentages from the syllabus to multiply them with the means of each category and then got the sum of those to get a final grade. Knowing that we get a report for one penguin we used map to get an array of reports for the classroom.</p>
+        <pre>  var gradeReport=function(penguin){
+    var report={ grade: d3.mean(penguin.test,getGrade)*.3 + d3.mean(penguin.homework,getGrade)* .15
+    +d3.mean(penguin.quizes,getGrade)*.2
+    +penguin.final[0].grade*.35, image: getPic(penguin)} 
+    return report }
+ classroom.map(gradeReport)</pre>
+        <h2> C1 </h2>
+        <p>We started by finding the first quiz score for a given penguin. We knew how to get the first quiz score because we noticed quizzes was an array and in order to get stuff from array we have to use index. Then we created an array of every penguin's first quiz score by using map.Then we the d3.mean to find the mean of the array we had just created with map. </p>
+        <pre>  var getFirstQuiz= function(penguin){
+        return penguin.quizes[0].grade;
         
-    <h1> Explanation for Javascript Lab
-        </h1>    
-        <h2> A 1 </h2>
-        <p> For A 1, first a variable was given a name of "getGrade" and then it was given a type of a function which performs an action. This Action specifically returns the grade from a quiz. The line of code used in the function was: </p> <br>
-          <pre>  var getGrade = function(quiz)
- {
-    return quiz.grade;
- } </pre> <br>
-    <p> the "quiz" inside the parenthesis is just an arbitrary name we give to the parameter.the "return" tells javascript to invoke the code coming after which is "quiz.grade".
-        </p>
-        <h2> A 2</h2>
-        <p> For this question, we had to use d3 tool, "mean". The mean gathers the data from an identified array and calculates the mean.The function that we created for A1 was used in the identifcation for the quiz grades. We used the "classroom[0]" to identify the first penguin.Classroom is an array that contains penguins as objects. Thus, the first penguin was identified and then "quizes" was typed to identify an additional array in the first penguin which contains grades as an attribute in an object, as shown below: </p> <br>
-        <pre>
-            d3.mean(classroom[0].quizes,getGrade);</pre> 
-    <h2> A3 </h2>
-        <p> For this question we made a new function "getMean" which performed all the actions done in A 2, through the same method used in A 1. This was done as show below: <br> </p>
-        <pre>
-        var getMean = function(penguin)
-    {
-    return d3.mean(penguin.quizes,getGrade);    
-    }
-        </pre>
-        <p> We used the function getGrade to return the value we need for this function.We had to call getGrade because we need the grade for the quiz from a specified penguin. 
-        </p>
-            <h2> A 4</h2>
-        <p> We already know how to find the mean for any penguin by using our getMean function. so to get the mean for each penguin we have to call this function for all of the penguins inside the classroom. In order to do this we used Map which is a method that creates an array of specified things, in our case these were values for grades. This was done as shown below: <br> </p>
-        <pre> classroom.map(getMean)
-        </pre>
-        <h2>A 5</h2>
-     <p>Since we created code in A4 that produced an array of the mean quiz scores of each penguin we can now apply the D3 mean tool(since it only accepts arrays) to easily find the mean of all quiz scores. This was done as shown below:
-        </p>
-        <pre> d3.mean(classroom.map(getMean)) </pre>
+        d3.mean(classroom.map(getFirstQuiz))
+    } </pre>
+        
+
     </body>
 </html>
